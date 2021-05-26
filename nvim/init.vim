@@ -39,6 +39,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'neovim/nvim-lspconfig'
 "Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
+Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ryanoasis/vim-devicons'
@@ -108,6 +109,7 @@ require'compe'.setup {
         nvim_lsp = true;
         nvim_lua = true;
         vsnip = true;
+        tabnine = true;
     };
 }
 EOF
