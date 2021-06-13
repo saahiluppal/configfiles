@@ -59,10 +59,20 @@ Plug 'mhinz/vim-signify'
 call plug#end()
 
 
+set background=dark
 syntax enable
-set termguicolors
-colorscheme gruvbox
+colorscheme onedark
 highlight Normal guibg=none
+
+
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 
 
 let mapleader=" "
