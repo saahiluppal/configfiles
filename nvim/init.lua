@@ -40,6 +40,7 @@ require('packer').startup(function(use)
 
   use 'gruvbox-community/gruvbox'
   use 'navarasu/onedark.nvim'
+  use 'marko-cerovac/material.nvim'
 
   use 'neovim/nvim-lspconfig'
 
@@ -69,6 +70,13 @@ require('packer').startup(function(use)
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  use {
+      'michaelb/sniprun',
+      run = 'bash ./install.sh'
+  }
+
+  use 'lukas-reineke/indent-blankline.nvim'
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -78,18 +86,25 @@ require('packer').startup(function(use)
 end)
 
 
--- ONEDARK
-require("onedark").setup {
-    style = "darker",
-    transparent = true
-}
-require("onedark").load()
+---- ONEDARK
+--require("onedark").setup {
+--    style = "darker",
+--    transparent = true
+--}
+--require("onedark").load()
 
 
 ---- GRUVBOX
 --vim.opt.termguicolors = true
 --vim.opt.background = "dark"
 --vim.cmd("colorscheme gruvbox")
+
+
+-- Material
+vim.cmd 'colorscheme material'
+vim.g.material_style = "darker"
+vim.opt.background = "dark"
+vim.opt.termguicolors = true
 
 
 vim.g.mapleader = " "
@@ -99,6 +114,11 @@ vim.api.nvim_set_keymap("n", "<leader>rc", [[<Cmd>e $HOME/.config/nvim/init.lua<
 
 -- Lua Line
 require('lualine').setup()
+
+
+-- Intent Blankline
+
+require("indent_blankline").setup {}
 
 
 -- LSP
@@ -138,7 +158,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'pyright', 'gopls', 'sumneko_lua' }
+local servers = { 'pyright', 'gopls' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
