@@ -117,8 +117,8 @@ require('lualine').setup()
 
 
 -- Intent Blankline
-
-require("indent_blankline").setup {}
+-- require("indent_blankline").setup {}
+require("ibl").setup()
 
 
 -- LSP
